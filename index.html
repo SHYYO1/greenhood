@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Green Hood</title>
+<meta name="description" content="Taking from the VIPs, giving to the people. Gold & crypto signals.">
+<meta name="theme-color" content="#050807">
+<meta property="og:title" content="The Green Hood 🏹">
+<meta property="og:description" content="Taking from the VIPs, giving to the people.">
+<meta property="og:image" content="og.jpg">
+<link rel="icon" href="emblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#050807; --neon:#40ff8c; --neon2:#1fd36a; --gold:#ffd27a; --text:#eef3ef; --dim:#9aa8a0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,sans-serif;overflow:hidden}
+body{-webkit-font-smoothing:antialiased}
+
+/* ---------- background ---------- */
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+.bg video,.bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);
+  filter:saturate(1.1) contrast(1.05);transition:opacity 2.2s ease,transform 9s ease-out}
+.ready .bg video,.ready .bg img.poster{opacity:.55;transform:scale(1.02)}
+.bg .shade{position:absolute;inset:0;background:
+  radial-gradient(ellipse at 50% 38%,rgba(5,8,7,.15) 0%,rgba(5,8,7,.75) 55%,rgba(5,8,7,.97) 100%),
+  linear-gradient(to bottom,rgba(5,8,7,.55),rgba(5,8,7,.1) 35%,rgba(5,8,7,.85) 80%,#050807)}
+.fog{position:absolute;left:-50%;width:200%;height:60%;bottom:-10%;opacity:.0;transition:opacity 3s ease 1.5s;
+  background:radial-gradient(closest-side,rgba(120,200,170,.16),transparent 70%) 0 0/50% 100% repeat-x;
+  animation:drift 38s linear infinite;filter:blur(18px)}
+.fog.f2{bottom:10%;height:45%;animation-duration:58s;animation-direction:reverse}
+.ready .fog{opacity:1}
+@keyframes drift{to{transform:translateX(25%)}}
+canvas#embers{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+/* ---------- intro ---------- */
+.intro{position:fixed;inset:0;z-index:5;display:grid;place-items:center;pointer-events:none}
+.streak{position:absolute;top:50%;left:0;height:2px;width:0;background:linear-gradient(90deg,transparent,var(--neon),#fff);
+  box-shadow:0 0 18px var(--neon),0 0 40px var(--neon);animation:streak .7s cubic-bezier(.7,0,.2,1) .15s forwards}
+@keyframes streak{0%{width:0;opacity:1}80%{width:100%;opacity:1}100%{width:100%;opacity:0}}
+.arrow{position:absolute;top:50%;left:-30%;width:42vmin;transform:translateY(-50%) rotate(-28deg);
+  filter:drop-shadow(0 0 10px var(--neon)) drop-shadow(0 0 26px var(--neon));animation:fly .55s cubic-bezier(.5,0,.1,1) .75s forwards;opacity:0}
+@keyframes fly{0%{left:-40%;opacity:1}100%{left:calc(50% - 21vmin);opacity:1}}
+.flash{position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(170,255,210,.9),rgba(64,255,140,.25) 30%,transparent 65%);
+  opacity:0;animation:flash .9s ease-out 1.25s forwards}
+@keyframes flash{0%{opacity:0}12%{opacity:1}100%{opacity:0}}
+.done .intro{display:none}
+
+/* ---------- content ---------- */
+main{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:max(28px,env(safe-area-inset-top)) 22px max(28px,env(safe-area-inset-bottom));text-align:center;gap:18px}
+.emblem{position:relative;width:min(46vw,210px);aspect-ratio:1;opacity:0;transform:scale(.4) rotate(-20deg)}
+.ready .emblem{animation:pop 1s cubic-bezier(.2,1.6,.3,1) 1.25s forwards}
+@keyframes pop{to{opacity:1;transform:scale(1) rotate(0)}}
+.emblem img{width:100%;height:100%;border-radius:50%;display:block;position:relative;z-index:2;
+  box-shadow:0 0 0 3px rgba(64,255,140,.55),0 0 40px rgba(64,255,140,.45),0 0 90px rgba(64,255,140,.25)}
+.emblem .ring{position:absolute;inset:-14px;border-radius:50%;border:2px solid rgba(64,255,140,.6);z-index:1;
+  animation:ring 2.6s ease-out 1.6s infinite;opacity:0}
+.emblem .ring.r2{animation-delay:2.9s}
+@keyframes ring{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+h1{font-family:Cinzel,serif;font-weight:800;font-size:clamp(34px,10vw,64px);letter-spacing:.06em;line-height:1.02;
+  color:#eafff2;text-shadow:0 0 18px rgba(64,255,140,.75),0 0 46px rgba(64,255,140,.35)}
+h1 .w{display:inline-block;white-space:nowrap}
+h1 .l{display:inline-block;opacity:0;transform:translateY(18px);filter:blur(10px)}
+.ready h1 .l{animation:letter .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(1.55s + var(--i) * 45ms)}
+@keyframes letter{to{opacity:1;transform:none;filter:blur(0)}}
+.tag{font-family:Cinzel,serif;font-weight:600;font-size:clamp(14px,4vw,19px);color:var(--gold);letter-spacing:.04em;
+  opacity:0;min-height:1.3em}
+.ready .tag{animation:fade .8s ease 2.35s forwards}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:520px}
+.chip{font-size:13.5px;font-weight:600;color:var(--text);padding:9px 14px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(64,255,140,.28);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  opacity:0;transform:translateY(14px)}
+.chip b{color:var(--neon)}
+.ready .chip{animation:up .6s cubic-bezier(.2,.9,.2,1) forwards;animation-delay:calc(2.7s + var(--i) * 120ms)}
+@keyframes up{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+
+.cta{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:8px;padding:19px 30px;border-radius:999px;
+  text-decoration:none;color:#03140a;font-weight:800;font-size:18px;letter-spacing:.08em;
+  background:linear-gradient(135deg,#7dffb4,var(--neon) 45%,var(--neon2));overflow:hidden;
+  box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 40px rgba(64,255,140,.45),0 0 80px rgba(64,255,140,.25);
+  opacity:0;transform:translateY(20px) scale(.95);-webkit-tap-highlight-color:transparent}
+.ready .cta{animation:up .7s cubic-bezier(.2,1.4,.3,1) 3.25s forwards,breathe 2.4s ease-in-out 4.2s infinite}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 10px 40px rgba(64,255,140,.45),0 0 80px rgba(64,255,140,.25)}
+  50%{box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 12px 60px rgba(64,255,140,.75),0 0 120px rgba(64,255,140,.45)}}
+.cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);
+  animation:shine 3.2s ease-in-out 4s infinite}
+@keyframes shine{0%{left:-60%}35%,100%{left:130%}}
+.cta svg{width:24px;height:24px;flex:none}
+.cta:active{transform:scale(.97)}
+.sub{font-size:12.5px;color:var(--dim);opacity:0}
+.ready .sub{animation:fade .8s ease 3.7s forwards}
+.legal{position:fixed;z-index:3;left:0;right:0;bottom:max(10px,env(safe-area-inset-bottom));text-align:center;
+  font-size:10.5px;color:rgba(200,215,205,.45);opacity:0}
+.ready .legal{animation:fade 1s ease 4s forwards}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01s!important;animation-delay:0s!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="bg">
+  <img class="poster" src="poster.jpg" alt="">
+  <video id="v" src="bg.mp4" autoplay muted loop playsinline preload="auto" poster="poster.jpg"></video>
+  <div class="shade"></div>
+  <div class="fog"></div><div class="fog f2"></div>
+</div>
+<canvas id="embers"></canvas>
+
+<div class="intro" aria-hidden="true">
+  <div class="streak"></div>
+  <svg class="arrow" viewBox="0 0 400 40"><defs><linearGradient id="ag" x1="0" x2="1"><stop offset="0" stop-color="#40ff8c" stop-opacity="0"/><stop offset=".55" stop-color="#9dffc4"/><stop offset="1" stop-color="#fff"/></linearGradient></defs>
+    <rect x="0" y="18" width="340" height="4" rx="2" fill="url(#ag)"/><path d="M330 4 L398 20 L330 36 L344 20 Z" fill="#ffd27a"/>
+    <path d="M0 20 L26 6 M0 20 L26 34 M14 20 L40 6 M14 20 L40 34" stroke="#40ff8c" stroke-width="3" fill="none"/></svg>
+  <div class="flash"></div>
+</div>
+
+<main>
+  <div class="emblem"><span class="ring"></span><span class="ring r2"></span><img src="emblem.png" alt="The Green Hood"></div>
+  <h1 id="title">THE GREEN HOOD</h1>
+  <p class="tag">Taking from the VIPs, giving to the people.</p>
+  <div class="chips">
+    <span class="chip" style="--i:0"><b>Gold</b> &amp; crypto signals</span>
+    <span class="chip" style="--i:1">Entry · <b>TP</b> · SL</span>
+    <span class="chip" style="--i:2">Wins &amp; losses posted</span>
+    <span class="chip" style="--i:3">No VIP. No deposit.</span>
+  </div>
+  <a class="cta" id="cta" href="https://t.me/+agI5O7RGy6AyMDNk" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.6 19.8c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.4l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 2.9c.9-.3 1.7.2 1.4 1.4Z"/></svg>
+    JOIN THE CHANNEL
+  </a>
+  <p class="sub">Opens in Telegram</p>
+</main>
+<p class="legal">Not financial advice. Trading involves risk.</p>
+
+<script>
+// split title into letters for the staggered reveal
+(function(){
+  var h=document.getElementById('title'),t=h.textContent,i=0;h.textContent='';
+  t.split(' ').forEach(function(word,wi){
+    if(wi)h.appendChild(document.createTextNode(' '));
+    var w=document.createElement('span');w.className='w';
+    word.split('').forEach(function(c){var s=document.createElement('span');s.className='l';s.textContent=c;s.style.setProperty('--i',i++);w.appendChild(s);});
+    h.appendChild(w);i++;
+  });
+  // start the show
+  requestAnimationFrame(function(){document.body.classList.add('ready');});
+  setTimeout(function(){document.body.classList.add('done');},2400);
+  var v=document.getElementById('v');var p=v.play&&v.play();if(p&&p.catch)p.catch(function(){});
+})();
+// embers
+(function(){
+  var c=document.getElementById('embers'),x=c.getContext('2d'),W,H,dpr=Math.min(2,window.devicePixelRatio||1),P=[];
+  function size(){W=c.width=innerWidth*dpr;H=c.height=innerHeight*dpr;c.style.width=innerWidth+'px';c.style.height=innerHeight+'px';}
+  size();addEventListener('resize',size);
+  for(var i=0;i<70;i++)P.push({x:Math.random(),y:Math.random(),r:.6+Math.random()*2.2,s:.02+Math.random()*.06,ph:Math.random()*6.3,g:Math.random()<.72});
+  var t0=performance.now();
+  function f(t){
+    var tt=(t-t0)/1000;x.clearRect(0,0,W,H);
+    var fade=Math.min(1,Math.max(0,(tt-1.2)/1.5));
+    for(var i=0;i<P.length;i++){var p=P[i];
+      var y=((p.y-tt*p.s)%1+1)%1,xx=p.x+Math.sin(tt*.8+p.ph)*.02,fl=.5+.5*Math.sin(tt*6+p.ph*3);
+      var col=p.g?'64,255,140':'255,150,50';
+      x.beginPath();x.fillStyle='rgba('+col+','+(.12*fl*fade)+')';x.arc(xx*W,y*H,p.r*dpr*4,0,6.3);x.fill();
+      x.beginPath();x.fillStyle='rgba('+col+','+(.85*fl*fade)+')';x.arc(xx*W,y*H,p.r*dpr,0,6.3);x.fill();}
+    requestAnimationFrame(f);
+  }
+  requestAnimationFrame(f);
+})();
+</script>
+</body>
+</html>
